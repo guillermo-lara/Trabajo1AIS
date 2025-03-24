@@ -22,14 +22,14 @@ import es.codeurjc.web.nitflex.service.FilmService;
 import es.codeurjc.web.nitflex.utils.ImageUtils;
 
 
-public class FilmTestUnitUtils {
+public class FilmUnitUtilsTests {
     private FilmRepository filmRepository;
     private FilmDTO filmDTO;
     private Film film;
     private CreateFilmRequest createFilmRequest;
 
     @BeforeEach
-    private void init(){
+    void init(){
         
         createFilmRequest = new CreateFilmRequest("Star Wars", "Guerra en el espacio", 1977, "16");
         film = new Film("Star Wars", "Guerra en el espacio", 1977, "16");

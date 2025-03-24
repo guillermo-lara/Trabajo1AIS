@@ -22,7 +22,7 @@ import jakarta.transaction.Transactional;
 
 @SpringBootTest
 @Transactional
-public class FilmTestIntegrationsUtils {
+public class FilmIntegrationsUtilsTests {
     @Autowired
     private FilmService filmService;
     @Autowired
@@ -34,7 +34,7 @@ public class FilmTestIntegrationsUtils {
     private Film film;
 
     @BeforeEach
-    private void init(){
+    void init(){
         filmMapper = Mappers.getMapper(FilmMapper.class);
         createfilmRequest = new CreateFilmRequest("Test Movie", "Test Synopsis", 2024, "PG-13");
     }
