@@ -1,7 +1,6 @@
 package es.codeurjc.web.nitflex.utils;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class AgeRatingOptionsUtils {
@@ -32,8 +31,7 @@ public class AgeRatingOptionsUtils {
 				ageRating -> new AgeRatingOption(
 					ageRating.getDescription(), 
 					ageRating.getDescription().equals(selectedAgeRating)
-			))
-			.collect(Collectors.toList());
+			)).toList();
     }
     
 }

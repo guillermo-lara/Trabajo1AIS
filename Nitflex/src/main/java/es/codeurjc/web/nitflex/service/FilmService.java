@@ -18,6 +18,7 @@ import es.codeurjc.web.nitflex.model.User;
 import es.codeurjc.web.nitflex.repository.FilmRepository;
 import es.codeurjc.web.nitflex.repository.UserRepository;
 import es.codeurjc.web.nitflex.service.exceptions.FilmNotFoundException;
+import es.codeurjc.web.nitflex.service.exceptions.ImageRetrievalException;
 import es.codeurjc.web.nitflex.utils.ImageUtils;
 import jakarta.transaction.Transactional;
 
@@ -50,8 +51,8 @@ public class FilmService {
 		try {
 			return blob.getBinaryStream();
 		} catch (SQLException e) {
-			throw new RuntimeException("Error getting image from database", e);
-		}
+        throw new ImageRetrievalException("Error getting image from database", e);		
+	}
 	}
 
 	public boolean exist(long id) {
