@@ -17,19 +17,17 @@ public class RestErrorHandler {
      * @param ex
      * @return a view with a message indicating the error
      */
-    @ExceptionHandler({ FilmNotFoundException.class, IllegalArgumentException.class, BindException.class })
     public ResponseEntity<String> handleException(Exception ex) {
-        return switch (ex) {
-            case MethodArgumentNotValidException manvExp -> {
-                // Check if getFieldError() is null before calling getDefaultMessage()
-                String errorMessage = (manvExp.getFieldError() != null && manvExp.getFieldError().getDefaultMessage() != null)
-                        ? manvExp.getFieldError().getDefaultMessage()
-                        : "Validation error";
-                yield ResponseEntity.badRequest().body(errorMessage);
+        if (ex instanceof MethodArgumentNotValidException manvExp) {
+            if (manvExp.getFieldError() != null) {
+                return ResponseEntity.badRequest().body(manvExp.getFieldError().getDefaultMessage());
             }
-            case FilmNotFoundException fnfExp -> ResponseEntity.notFound().build();
-            default -> ResponseEntity.badRequest().body(ex.getMessage());
-        };
+            return ResponseEntity.badRequest().body("Invalid input data");
+        }
+        if (ex instanceof FilmNotFoundException) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
 }
