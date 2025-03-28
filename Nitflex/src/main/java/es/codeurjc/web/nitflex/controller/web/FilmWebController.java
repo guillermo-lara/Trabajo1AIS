@@ -40,16 +40,15 @@ public class FilmWebController {
 	String stringFilmForm = "filmForm";
 	String stringRedirectFilms = "redirect:/films/";
 
+    private final FilmService filmService;
+    private final FavoriteFilmService favoriteFilmService;
+    private final ReviewService reviewService;
 
-
-	@Autowired
-	private FilmService filmService;
-
-	@Autowired 
-	private FavoriteFilmService favoriteFilmService;
-
-	@Autowired
-	private ReviewService reviewService;
+    public FilmWebController(FilmService filmService, FavoriteFilmService favoriteFilmService, ReviewService reviewService) {
+        this.filmService = filmService;
+        this.favoriteFilmService = favoriteFilmService;
+        this.reviewService = reviewService;
+    }
 	
 	@GetMapping("/")
 	public String showFilms(Model model) {

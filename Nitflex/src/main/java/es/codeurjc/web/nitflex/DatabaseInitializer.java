@@ -17,18 +17,18 @@ import jakarta.annotation.PostConstruct;
 
 @Component
 public class DatabaseInitializer {
+	
+	private final FilmService filmService;
+	private final ReviewService reviewService;
+	private final UserRepository userRepository;
+	private final ImageUtils imageUtils;
 
-	@Autowired
-	private FilmService filmService;
-
-	@Autowired
-	private ReviewService reviewService;
-
-	@Autowired
-	private UserRepository userRepository;
-
-	@Autowired
-	private ImageUtils imageUtils;
+	public DatabaseInitializer(FilmService filmService, ReviewService reviewService, UserRepository userRepository, ImageUtils imageUtils) {
+		this.filmService = filmService;
+		this.reviewService = reviewService;
+		this.userRepository = userRepository;
+		this.imageUtils = imageUtils;
+	}
 
 	@PostConstruct
 	public void init() throws IOException {

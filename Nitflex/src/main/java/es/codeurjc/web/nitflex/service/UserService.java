@@ -13,8 +13,11 @@ import es.codeurjc.web.nitflex.repository.UserRepository;
 @Service
 public class UserService {
     
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    };
 
     public User getUser(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));

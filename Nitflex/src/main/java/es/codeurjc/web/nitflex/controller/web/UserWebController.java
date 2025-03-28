@@ -14,11 +14,13 @@ import es.codeurjc.web.nitflex.service.UserService;
 @Controller
 public class UserWebController {
 
-    @Autowired
-    private UserComponent userComponent;
+    private final UserComponent userComponent;
+    private final UserService userService;
 
-    @Autowired
-    private UserService userService;
+    public UserWebController(UserComponent userComponent, UserService userService) {
+        this.userComponent = userComponent;
+        this.userService = userService;
+    }
 
     @GetMapping("/users")
     public String index(Model model) {

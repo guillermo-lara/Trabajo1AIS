@@ -15,12 +15,14 @@ import es.codeurjc.web.nitflex.service.UserService;
 @RestController
 @RequestMapping("/api/users")
 public class UserRestController {
+    
+    private final UserService userService;
+    private final UserMapper userMapper;
 
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private UserMapper userMapper;
+    public UserRestController(UserService userService, UserMapper userMapper) {
+        this.userService = userService;
+        this.userMapper = userMapper;
+    }
 
     @GetMapping("/")
     public Collection<UserDTO> getUsers() {

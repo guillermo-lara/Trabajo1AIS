@@ -9,8 +9,11 @@ import es.codeurjc.web.nitflex.repository.UserRepository;
 @Component
 public class UserComponent {
     
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserComponent(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     /**
      * Returns always the same user for simplicity before adding authentication

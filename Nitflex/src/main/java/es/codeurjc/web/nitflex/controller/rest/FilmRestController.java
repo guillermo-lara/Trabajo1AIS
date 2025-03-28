@@ -28,11 +28,14 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/films")
 public class FilmRestController {
 
-	@Autowired
-	private FilmService filmService;
+	private final FilmService filmService;
+	private final ReviewService reviewService;
 
-	@Autowired
-	private ReviewService reviewService;
+	public FilmRestController(FilmService filmService, ReviewService reviewService) {
+		this.filmService = filmService;
+		this.reviewService = reviewService;
+	}
+
 
 	@GetMapping("/")
 	public Collection<FilmDTO> getFilms(){
