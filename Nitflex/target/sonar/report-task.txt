@@ -2,5 +2,5 @@ projectKey=es.codeurjc.web:nitflex-web-bbdd-rest
 serverUrl=http://localhost:9000
 serverVersion=25.3.0.104237
 dashboardUrl=http://localhost:9000/dashboard?id=es.codeurjc.web%3Anitflex-web-bbdd-rest
-ceTaskId=177c40c1-3a82-4d1d-a827-ca23dcf4f9db
-ceTaskUrl=http://localhost:9000/api/ce/task?id=177c40c1-3a82-4d1d-a827-ca23dcf4f9db
+ceTaskId=b47aeda7-b90b-4fa5-9a4a-045249ec368b
+ceTaskUrl=http://localhost:9000/api/ce/task?id=b47aeda7-b90b-4fa5-9a4a-045249ec368b
