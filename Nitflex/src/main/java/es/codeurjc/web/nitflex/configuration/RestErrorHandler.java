@@ -18,7 +18,7 @@ public class RestErrorHandler {
      * @return a view with a message indicating the error
      */
     @ExceptionHandler({ FilmNotFoundException.class, IllegalArgumentException.class, BindException.class })
-    public ResponseEntity<?> handleException(Exception ex) {
+    public ResponseEntity<String> handleException(Exception ex) {
         if (ex instanceof MethodArgumentNotValidException manvExp) {
             return ResponseEntity.badRequest().body(manvExp.getFieldError().getDefaultMessage());
         } else if (ex instanceof FilmNotFoundException fnfExp) {
