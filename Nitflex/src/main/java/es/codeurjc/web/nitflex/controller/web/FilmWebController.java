@@ -158,9 +158,9 @@ public class FilmWebController {
 		} catch (Exception e) {
 			ClassPathResource resource = new ClassPathResource("static/images/no-image.png");
 			byte[] imageBytes = resource.getInputStream().readAllBytes();
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg").body(imageBytes);
+			return ResponseEntity.status(HttpStatus.OK).header(HttpHeaders.CONTENT_TYPE, "image/jpeg").body(imageBytes);
 		}
-		return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg").body(poster);
+		return ResponseEntity.status(HttpStatus.OK).header(HttpHeaders.CONTENT_TYPE, "image/jpeg").body(poster);
 	}
 
 	@PostMapping("/films/{filmId}/reviews")
