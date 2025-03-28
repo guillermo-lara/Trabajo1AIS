@@ -19,11 +19,13 @@ public class RestErrorHandler {
      */
     @ExceptionHandler({ FilmNotFoundException.class, IllegalArgumentException.class, BindException.class })
     public ResponseEntity<String> handleException(Exception ex) {
-        return switch (ex) {
-            case MethodArgumentNotValidException manvExp -> ResponseEntity.badRequest().body(manvExp.getFieldError().getDefaultMessage());
-            case FilmNotFoundException fnfExp -> ResponseEntity.notFound().build();
-            default -> ResponseEntity.badRequest().body(ex.getMessage());
-        };
+        if (ex instanceof MethodArgumentNotValidException manvExp) {
+            return ResponseEntity.badRequest().body(manvExp.getFieldError().getDefaultMessage());
+        } else if (ex instanceof FilmNotFoundException fnfExp) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
     }
 
 }
