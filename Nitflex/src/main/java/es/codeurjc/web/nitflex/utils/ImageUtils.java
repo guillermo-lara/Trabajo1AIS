@@ -15,12 +15,14 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 public class ImageUtils {
 
+	String messageError = "Error at processing the image";
+
     public Blob remoteImageToBlob(String imageUrl){
         try {
             Resource image = new UrlResource(imageUrl);
 		    return BlobProxy.generateProxy(image.getInputStream(), image.contentLength());
         } catch (IOException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error at processing the image");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, messageError);
         }
 	}
 
@@ -30,7 +32,7 @@ public class ImageUtils {
 			try {
 				return BlobProxy.generateProxy(imageFile.toURI().toURL().openStream(), imageFile.length());
 			} catch (IOException e) {
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error at processing the image");
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, messageError);
 			}
 		}
 		return null;
@@ -41,7 +43,7 @@ public class ImageUtils {
 			try {
 				return BlobProxy.generateProxy(image.getInputStream(), image.getSize());
 			} catch (IOException e) {
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error at processing the image");
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, messageError);
 			}
 		}
         return null;
